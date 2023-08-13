@@ -15,6 +15,8 @@ type Product struct {
 	ProductName string      `db:"productName"`
 	VariantId   uuid.UUID   `db:"variantId"`
 	BrandId     uuid.UUID   `db:"brandId"`
+	BrandName   string      `db:"brandName"`
+	VariantName string      `db:"variantName"`
 	Price       float64     `db:"price"`
 	Stock       int         `db:"stock"`
 	Status      string      `db:"status"`
@@ -27,21 +29,14 @@ type Product struct {
 	DeletedBy   nuuid.NUUID `db:"deletedBy"`
 }
 
-type FilterOptions struct {
-	BrandName   string
-	ProductName string
-	VariantName string
-	Status      string
-}
-
-type SortingOptions struct {
-	By        string
-	Ascending bool
-}
-
-type PaginationOptions struct {
-	Page     int
-	PageSize int
+type ProductSearchParams struct {
+	BrandName   string `json:"brand_name"`
+	ProductName string `json:"product_name"`
+	VariantName string `json:"variant_name"`
+	Status      string `json:"status"`
+	SortBy      string `json:"sort_by"`
+	Page        int    `json:"page"`
+	PageSize    int    `json:"page_size"`
 }
 
 type Image struct {
